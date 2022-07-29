@@ -18,7 +18,6 @@ echo "Building " $BUILDTYPE "image"
 [ -x scratch/buildroot/${ROOTDIR}/target/sbin/sedutil-cli  ] || { echo " prereqs are not available "; exit 1; }
 [ -f buildroot/syslinux.cfg ] || { echo " prereqs are not available "; exit 1; }
 [ -f UEFI64/UEFI64-*.img.gz ] || { echo " prereqs are not available "; exit 1; }
-[ -f BIOS32/BIOS32-*.img.gz ] || { echo " prereqs are not available "; exit 1; }
 #
 # Remaster the root file system
 sudo rm -rf scratch/rescuefs
@@ -37,7 +36,6 @@ sudo mv /tmp/issue etc/issue
 sudo rm etc/init.d/S99*
 sudo mkdir -p usr/sedutil
 sudo cp ../../UEFI64/UEFI64-*.img.gz usr/sedutil/
-sudo cp ../../BIOS32/BIOS32-*.img.gz usr/sedutil/
 sudo find . | sudo cpio -o -H newc | xz -9 -C crc32 -c > ../buildroot/${ROOTDIR}/images/rescuefs.cpio.xz
 cd ../..
 sudo rm -rf scratch/rescuefs
