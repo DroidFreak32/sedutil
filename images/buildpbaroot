@@ -24,11 +24,7 @@ mkdir 64bit
 cp ../../buildroot/64bit/.config 64bit/
 cp ../../buildroot/64bit/* 64bit/
 cp -r ../../buildroot/64bit/overlay 64bit/
-# 32 bit system
-mkdir 32bit
-cp ../../buildroot/32bit/.config 32bit/
-cp ../../buildroot/32bit/* 32bit/
-cp -r ../../buildroot/32bit/overlay 32bit/
+
 # add the current buildroot packages
 sed -i '/sedutil/d' package/Config.in
 sed -i '/menu "System tools"/a \\tsource "package/sedutil/Config.in"' package/Config.in
@@ -47,8 +43,6 @@ echo Building bootable systems for the PBA, this is going to take a while ..... 
 read INOUT
 echo Making the 64bit PBA Linux system
 make O=64bit 2>&1 | tee 64bit/build_output.txt
-echo Making the 32bit PBA Linux system
-make O=32bit 2>&1 | tee 32bit/build_output.txt
 # back to where we started
 cd ../..
 exit 0

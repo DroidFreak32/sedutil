@@ -3,18 +3,9 @@ set -x
 ## define releases for tools
 . conf
 VERSIONINFO=`git describe --dirty`  || VERSIONINFO=tarball
-BUILDTYPE=RESCUE32
-ROOTDIR=32bit
+BUILDTYPE=RESCUE64
+ROOTDIR=64bit
 
-if [ x${1} == "xRescue32" ] ; then
-	BUILDTYPE="RESCUE32"
-	ROOTDIR="32bit"
-elif [ x${1} == "xRescue64" ] ; then
-	BUILDTYPE="RESCUE64"
-	ROOTDIR="64bit"
-else 
-	echo "NO BUILDTYPE specified defalted to Rescue32"
-fi
 BUILDIMG=${BUILDTYPE}-${VERSIONINFO}.img
 echo "Building " $BUILDTYPE "image"
 [ -f scratch/${SYSLINUX}/bios/mbr/mbr.bin ] || { echo " prereqs are not available "; exit 1; }
