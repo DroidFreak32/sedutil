@@ -32,8 +32,6 @@ jobs:
       run: cd images && ./buildbios
     - name: Build UEFI64
       run: cd images && ./buildUEFI64
-    - name: Build Rescue32
-      run: cd images && ./buildrescue Rescue32
     - name: Build Rescue64
       run: cd images && ./buildrescue Rescue64
     - name: List built files
